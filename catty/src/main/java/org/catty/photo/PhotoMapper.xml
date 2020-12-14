@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.photo.PhotoMapper">
+    <resultMap id="photoResultMap" type="org.catty.photo.Photo">
+        <result column="NO" property="no" />
+        <result column="TYPE" property="type" />
+        <result column="TYPE_NO" property="typeNo" />
+        <result column="LOGICAL_NAME" property="logicalName" />
+        <result column="PHYSICAL_NAME" property="physicalName" />
+        <result column="PATH" property="path" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="type != null and type != ''">
+                AND TYPE = #{type}
+            </if>
+            <if test="typeNo != null and typeNo != ''">
+                AND TYPE_NO = #{typeNo}
+            </if>
+            <if test="logicalName != null and logicalName != ''">
+                AND LOGICAL_NAME = #{logicalName}
+            </if>
+            <if test="physicalName != null and physicalName != ''">
+                AND PHYSICAL_NAME = #{physicalName}
+            </if>
+            <if test="path != null and path != ''">
+                AND PATH = #{path}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectPhoto" parameterType="org.catty.photo.Photo" resultMap="photoResultMap">
+        SELECT
+            NO,
+            TYPE,
+            TYPE_NO,
+            LOGICAL_NAME,
+            PHYSICAL_NAME,
+            PATH
+        FROM photo
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertPhoto" parameterType="org.catty.photo.Photo">
+        INSERT INTO photo (
+            NO,
+            TYPE,
+            TYPE_NO,
+            LOGICAL_NAME,
+            PHYSICAL_NAME,
+            PATH
+        ) VALUES (
+            #{no},
+            #{type},
+            #{typeNo},
+            #{logicalName},
+            #{physicalName},
+            #{path}
+        )
+    </insert>
+
+    <update id="updatePhoto" parameterType="org.catty.photo.Photo">
+        UPDATE photo
+        <set>
+            <if test="type != ''">
+                TYPE = #{type},
+            </if>
+            <if test="typeNo != ''">
+                TYPE_NO = #{typeNo},
+            </if>
+            <if test="logicalName != ''">
+                LOGICAL_NAME = #{logicalName},
+            </if>
+            <if test="physicalName != ''">
+                PHYSICAL_NAME = #{physicalName},
+            </if>
+            <if test="path != ''">
+                PATH = #{path},
+            </if>
+        </set>
+        WHERE
+        	NO = #{no}
+    </update>
+
+    <delete id="deletePhoto" parameterType="org.catty.photo.Photo">
+        DELETE FROM photo
+        <include refid="whereSql" />
+    </delete>
+</mapper>

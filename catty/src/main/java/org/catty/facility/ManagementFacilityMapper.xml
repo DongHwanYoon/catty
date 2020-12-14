@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.facility.ManagementFacilityMapper">
+    <resultMap id="managementFacilityResultMap" type="org.catty.facility.ManagementFacility">
+        <result column="NO" property="no" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="FACILITY_NO" property="facilityNo" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="facilityNo != null and facilityNo != ''">
+                AND FACILITY_NO = #{facilityNo}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.facility.ManagementFacility" resultType="int">
+        SELECT COUNT(*)
+        FROM management_facility
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectManagementFacilityList" parameterType="org.catty.facility.ManagementFacility" resultMap="managementFacilityResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                MEMBER_NO,
+                FACILITY_NO
+            FROM management_facility
+            <include refid="whereSql" />
+        ) TB
+    <!--     <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where> -->
+    </select>
+
+    <select id="selectManagementFacility" parameterType="org.catty.facility.ManagementFacility" resultMap="managementFacilityResultMap">
+        SELECT
+            NO,
+            MEMBER_NO,
+            FACILITY_NO
+        FROM management_facility
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertManagementFacility" parameterType="org.catty.facility.ManagementFacility">
+        INSERT INTO management_facility (
+            NO,
+            MEMBER_NO,
+            FACILITY_NO
+        ) VALUES (
+            NO,
+            #{memberNo},
+            #{facilityNo}
+        )
+    </insert>
+
+    <update id="updateManagementFacility" parameterType="org.catty.facility.ManagementFacility">
+        UPDATE management_facility
+        <set>
+            <!-- <if test="no != ''">
+                NO = #{no},
+            </if> -->
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="facilityNo != ''">
+                FACILITY_NO = #{facilityNo},
+            </if>
+        </set>
+        WHERE MEMBER_NO = #{memberNo}
+    </update>
+
+    <delete id="deleteManagementFacility" parameterType="org.catty.facility.ManagementFacility">
+        DELETE FROM management_facility
+        <include refid="whereSql" />
+    </delete>
+</mapper>

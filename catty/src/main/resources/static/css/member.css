@@ -1,0 +1,199 @@
+/* --------------------------------------
+   회원 조회 (좌)
+-----------------------------------------*/
+
+.member-wrap .member-title {
+	position: relative;
+	display: inline-block;
+	font-size: 30px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-family: 'Noto Sans JP', sans-serif;
+	margin-top: 100px;
+	margin-bottom: 10px;
+	margin-left: 70px;
+}
+
+.member-wrap .member-body-left {
+	font-family: 'Noto Sans JP', sans-serif;
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 100px;
+	margin-left: 50px;
+}
+
+.member-wrap .member-body-left .member-title:before {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    right: -31px;
+    width: 18px;
+    height: 2px;
+    border-radius: 20px;
+    background-color: #f3a079;
+}
+
+.member-wrap .member-body-left input[type="text"] {
+	padding: 12px 20px;
+	margin-bottom: 20px;
+	border: 1px solid #fff;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.member-wrap p {
+	text-align: left;
+	font-size: 14px;
+	padding: 12px 3px;
+	margin-bottom: 20px;
+	width: 90px;
+	border: 1px solid #fff;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.member-wrap .member-body-left input[type="text"]:focus
+	{
+	outline: none;
+}
+
+.member-wrap .member-body-left input[type="password"] {
+	padding: 12px 18px;
+	margin-bottom: 20px;
+	width: 100%;
+	border: 1px solid #dedede;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.member-wrap .member-body-left input[type="password"]:focus
+	{
+	outline: none;
+}
+
+.member-wrap .member-body-left input[type="submit"] {
+	background-color: #f3a079;
+	margin-bottom: 20px;
+	border: none;
+	color: #fff;
+	padding: 12px 40px;
+	border-radius: 10px;
+	font-size: 17px;
+	width: 100%;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.member-wrap .member-body-left input[type="submit"]:hover
+	{
+	background-color: #f97785;
+}
+
+.member-wrap .member-body-left input[type="submit"]:focus
+	{
+	outline: none;
+}
+
+/* --------------------------------------
+   회원 조회 (우)
+-----------------------------------------*/
+.member-wrap .member-body-right {
+	font-family: 'Noto Sans JP', sans-serif;
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 100px;
+}
+
+.member-wrap .member-title:before {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    right: -31px;
+    width: 18px;
+    height: 2px;
+    border-radius: 20px;
+    background-color: #f3a079;
+}
+
+.member-wrap .member-body-right input[type="text"] {
+	padding: 12px 18px;
+	margin-bottom: 20px;
+	width: 365px;
+	border: 1px solid #dedede;
+	font-size: 14px;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.member-wrap .member-body-right input[type="text"]:focus
+	{
+	outline: none;
+}
+
+.member-wrap .member-body-right input[type="password"] {
+	padding: 12px 18px;
+	margin-bottom: 20px;
+	width: 400px;
+	border: 1px solid #dedede;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.member-wrap .member-body-right input[type="password"]:focus
+	{
+	outline: none;
+}
+
+.member-wrap .member-body-right input[type="submit"] {
+	background-color: #f3a079;
+	margin-bottom: 20px;
+	border: none;
+	color: #fff;
+	padding: 12px 40px;
+	border-radius: 10px;
+	font-size: 15px;
+	width: 100%;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.member-wrap .member-body-right input[type="submit"]:hover
+	{
+	background-color: #f97785;
+}
+
+.member-wrap .member-body-right input[type="submit"]:focus
+	{
+	outline: none;
+}
+
+.member-wrap .member-btn {
+	width: 120px;
+	background-color: #f3a079;
+	border: none;
+	color: #fff;
+	padding: 12px 18px;
+	border-radius: 10px;
+	font-size: 14px;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.member-wrap .member-btn:hover {
+	background-color: #f97785;
+}

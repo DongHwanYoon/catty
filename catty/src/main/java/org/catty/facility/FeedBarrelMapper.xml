@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.facility.FeedBarrelMapper">
+    <resultMap id="feedBarrelResultMap" type="org.catty.facility.FeedBarrel">
+        <result column="NO" property="no" />
+        <result column="FACILITY_NO" property="facilityNo" />
+        <result column="SUPPLEMENT_STATUS" property="supplementStatus" />
+        <result column="CRITICAL_VALUE" property="criticalValue" />
+        <result column="CAPACITY" property="capacity" />
+        <result column="STATUS" property="status" />
+        <result column="STANDARD" property="standard" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="facilityNo != null and facilityNo != ''">
+                AND FACILITY_NO = #{facilityNo}
+            </if>
+            <if test="supplementStatus != null and supplementStatus != ''">
+                AND SUPPLEMENT_STATUS = #{supplementStatus}
+            </if>
+            <if test="criticalValue != null and criticalValue != ''">
+                AND CRITICAL_VALUE = #{criticalValue}
+            </if>
+            <if test="capacity != null and capacity != ''">
+                AND CAPACITY = #{capacity}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+            <if test="standard != null and standard != ''">
+                AND STANDARD = #{standard}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.facility.FeedBarrel" resultType="int">
+        SELECT COUNT(*)
+        FROM feed_barrel
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectFeedBarrelList" parameterType="org.catty.facility.FeedBarrel" resultMap="feedBarrelResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                FACILITY_NO,
+                SUPPLEMENT_STATUS,
+                CRITICAL_VALUE,
+                CAPACITY,
+                STATUS,
+                STANDARD
+            FROM feed_barrel
+            <include refid="whereSql" />
+        ) TB
+<!--         <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where> -->
+    </select>
+
+    <select id="selectFeedBarrel" parameterType="org.catty.facility.FeedBarrel" resultMap="feedBarrelResultMap">
+        SELECT
+            NO,
+            FACILITY_NO,
+            SUPPLEMENT_STATUS,
+            CRITICAL_VALUE,
+            CAPACITY,
+            STATUS,
+            STANDARD
+        FROM feed_barrel
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertFeedBarrel" parameterType="org.catty.facility.FeedBarrel">
+        INSERT INTO feed_barrel (
+            NO,
+            FACILITY_NO,
+            SUPPLEMENT_STATUS,
+            CRITICAL_VALUE,
+            CAPACITY,
+            STATUS,
+            STANDARD
+        ) VALUES (
+            #{no},
+            #{facilityNo},
+            #{supplementStatus},
+            #{criticalValue},
+            #{capacity},
+            #{status},
+            #{standard}
+        )
+    </insert>
+
+    <update id="updateFeedBarrel" parameterType="org.catty.facility.FeedBarrel">
+        UPDATE feed_barrel
+        <set>
+            <if test="supplementStatus != ''">
+                SUPPLEMENT_STATUS = #{supplementStatus},
+            </if>
+            <if test="criticalValue != ''">
+                CRITICAL_VALUE = #{criticalValue},
+            </if>
+                CAPACITY = #{capacity},
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="standard != ''">
+                STANDARD = #{standard},
+            </if>
+        </set>
+        WHERE
+        	NO = #{no} AND FACILITY_NO = #{facilityNo}
+    </update>
+
+    <delete id="deleteFeedBarrel" parameterType="org.catty.facility.FeedBarrel">
+        DELETE FROM feed_barrel
+        <include refid="whereSql" />
+    </delete>
+</mapper>

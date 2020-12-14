@@ -1,0 +1,479 @@
+   /* --------------------------------------
+    Cat List
+-----------------------------------------*/
+
+.cat-list-form {
+   	position: relative;
+   	padding-left: 40px;
+   	margin-top: 10px;
+   	padding-right: 40px;
+   	margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+   	box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+   	background: url('../images/pt1.png') center center fixed ;
+}
+
+.cat-list-form .cat-header {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cat-list-form .cat-header .pragh{
+	padding: 15px;
+	margin: 10px;
+    font-size: 20px;
+    font-weight: 550;
+    color:#656464;
+    line-height: 1.0;
+}
+
+.cat-list-form .cat-list .widget {
+   margin-bottom: 10px;
+}
+
+.cat-list-form .cat-list .widget .widget-title {
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-bottom: 15px;
+}
+
+.cat-list-form .cat-list .widget .widget-title:before {
+    content: '';
+    position: absolute;
+    bottom: 7px;
+    right: -31px;
+    width: 18px;
+    height: 2px;
+    border-radius: 20px;
+    background-color: #f3a079;
+}
+
+.cat-list-form .cat-list .about-widget {
+    border-radius: 10px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, .3) 0px 0px 16px 0px;
+}
+
+.cat-list-form .cat-list .about-widget:hover {
+	transform: translate(0px, 5px);
+	box-shadow: #f3a079 0px 0px 16px 0px;
+}
+
+.cat-list-form .cat-list .about-widget table {
+    padding: 5px;
+    position: relative;
+    margin: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cat-list-form .cat-list .about-widget td {
+    padding: 5px;
+    position: relative;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cat-list-form .cat-list .about-widget .cat-image img {
+   border-radius: 5%;
+   width: 120px;
+   height: 120px;
+}
+
+.cat-list-form .cat-list .about-widget .cat-name a{
+    display: block;
+    line-height: 1.3;
+    color: #656464;
+    font-size: 20px;
+    font-weight: 700;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-list-form .cat-list .about-widget .cat-name a:hover {
+    color: #f3a079;
+    transform: scale(1.05);
+}
+
+.cat-list-form .cat-list .about-widget .cat-name span {
+    font-weight: 700;
+}
+
+.cat-list-form .cat-list .about-widget .cat-desc {
+    font-size: 20px;
+    font-weight: 700;
+    color:#656464;
+    line-height: 1.2;
+}
+
+.cat-list-form .cat-list .about-widget .cat-desc a{
+    line-height: 1.3;
+    color: #656464;
+    font-size: 20px;
+    font-weight: 700;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-list-form .cat-list .about-widget .cat-desc a:hover {
+    color: #f3a079;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.cat-list-form .cat-btn {
+	position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.cat-list-form .cat-btn .btn-left {
+	margin-left: 15px;
+}
+
+.cat-list-form .cat-btn .btn-right {
+	margin-right: 15px;
+}
+
+.cat-list-form .cat-btn .registe-btn {
+    width: 100px;
+    margin-right: 5px;
+    background-color: #f3a079;
+    border: 1px solid #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-list-form .cat-btn .registe-btn:hover {
+    background-color: #f97785;
+}
+
+.cat-list-form .cat-btn .search-btn {
+    width: 55px;
+    background-color: #f3a079;
+    border: 1px solid #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.cat-list-form .cat-btn .search-btn:hover {
+    background-color: #f97785;
+}
+
+.cat-list-form .cat-btn .sort-option {
+    padding: 8px 8px;
+	width: 80px;
+    font-size: 13px;
+    font-weight: 700;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    outline: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-list-form .cat-btn .sort-option:hover {
+    color: #ff8040;
+}
+
+.cat-list-form .cat-btn .sort-option optgroup {
+    font-size: 13px;
+    color: #656363;
+}
+
+.cat-list-form .cat-btn .search-input {
+	padding: 8px 8px;
+	width: 300px;
+	border: 1px solid #dedede;
+	color: #000000;
+	line-height: normal;
+	border-radius: 10px;
+	font-size: 13px;
+}
+
+  /* --------------------------------------
+    Cat Detail
+-----------------------------------------*/
+
+.cat-detail-form {
+	position: relative;
+   	padding: 60px;
+   	margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+   	box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+}
+
+.cat-detail-form .detail {
+    position: relative;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cat-detail-form .detail .cat-image {
+   margin-bottom: 15px;
+   width: 250px;
+   height: 250px;
+}
+
+.cat-detail-form .detail .cat-image img {
+   border-radius: 10px;
+   margin-bottom: 15px;
+   width: 250px;
+   height: 250px;
+}
+
+.cat-detail-form .detail .cat-desc {
+    font-size: 15px;
+    font-weight: 700;
+    color:#656464;
+    line-height: 1.2;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.cat-detail-form .detail .btn-container {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.cat-detail-form .detail .btn-container .common-btn {
+    width: 100px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-detail-form .detail .btn-container .common-btn:hover {
+    background-color: #f97785;
+}
+
+.cat-detail-form .detail .btn-container button[type="submit"] {
+    width: 100px;
+    margin-right: 5px;
+    background-color: #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-detail-form .detail .btn-container button[type="submit"]:hover {
+    background-color: #f97785;
+}
+
+.cat-detail-form .resource {
+	font-size: 14px;
+    position: relative;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+    background: url('../images/pt1.png') center center fixed ;
+}
+
+.cat-detail-form .resource .map {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    border-radius: 20px;
+}
+
+.cat-detail-form .resource .iw_inner {
+	font-size: 50px;
+	width: 300px;
+	height: 100px;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+}
+
+.cat-detail-form .resource table {
+	font-size: 20px;
+	width: 100%;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    background-color: #ffffff;
+}
+
+.cat-detail-form .cat-desc {
+    font-size: 15px;
+    font-weight: 700;
+    color:#656464;
+    line-height: 1.2;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.cat-detail-form .cat-msg {
+    font-size: 15px;
+    font-weight: 700;
+    color:#656464;
+    line-height: 1.2;
+    margin: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.cat-detail-form input[type=text] {
+	width: 200px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    border-bottom: 1px solid #656363;
+    outline: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-detail-form input[type=file] {
+	width: 200px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    outline: none;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-detail-form input[type=button]{
+    width: 55px;
+    margin-right: 5px;
+    background-color: #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 15px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.cat-detail-form input[type=button]:hover {
+	background-color: #f97785;
+}
+
+.cat-detail-form input[type=file]:hover {
+	box-shadow: #f3a079 0px 0px 16px 0px;
+}
+
+.cat-detail-form .button {
+	width: auto;
+    min-width: 150px;
+    background-color: #f3a079;
+    border: none;
+    color: #fff;
+    margin: 10px;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 15px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+input.error, textarea.error{
+  border:1px dashed red;
+}
+
+label.error{
+  display:block;
+  color:red;
+}
+
+.fa-mars {
+    color: #0000ff;
+}
+
+.fa-venus {
+    color: #ff0000;
+}

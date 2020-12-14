@@ -1,0 +1,77 @@
+/* --------------------------------------
+   회원 목록 양식
+-----------------------------------------*/
+
+.post-single .member-list {
+	padding: 10px 40px;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, .05) 0px 0px 16px 0px;
+}
+
+.post-single .member-list .member-list-title {
+	position: relative;
+	display: inline-block;
+	font-size: 30px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-family: 'Noto Sans JP', sans-serif;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.post-single .member-list .member-list-title:before {
+	content: '';
+	position: absolute;
+	bottom: 15px;
+	right: -31px;
+	width: 18px;
+	height: 2px;
+	border-radius: 20px;
+	background-color: #f3a079;
+}
+
+.post-single .member-list .members {
+	position: relative;
+	text-align: right;
+	font-size: 13px;
+	letter-spacing: 1px;
+	font-family: 'Noto Sans JP', sans-serif;
+	margin-top: 10px;
+	margin-bottom: 60px;
+}
+
+.post-single .member-list .members .table {
+	font-size: 13px;
+	text-align: left;
+}
+
+.post-single .member-list .members input[type=text] {
+	padding: 8px 8px;
+	margin-top: 15px;
+	width: 300px;
+	border: 1px solid #dedede;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.post-single .member-list .members input[type="submit"] {
+	padding: 8px 8px;
+	margin-bottom: 10px;
+	width: 55px;
+	border: 1px solid #f3a079;
+	background-color: #f3a079;
+	color: #fff;
+	line-height: normal;
+	border-radius: 10px;
+}
+
+.post-single .member-list .members input[type=text]:focus,
+	.post-single .member-list .members input[type="submit"]:focus {
+	outline: none;
+}
+
+.post-single .member-list .members input[type="submit"]:hover {
+	background-color: #f97785;
+}

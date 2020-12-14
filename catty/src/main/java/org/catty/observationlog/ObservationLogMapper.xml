@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.observationlog.ObservationLogMapper">
+    <resultMap id="observationLogResultMap" type="org.catty.observationlog.ObservationLog">
+        <result column="NO" property="no" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="CAT_NO" property="catNo" />
+        <result column="REGISTRATE_DATE" property="registrateDate" />
+        <result column="MODIFIED_DATE" property="modifiedDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="catNo != null and catNo != ''">
+                AND CAT_NO = #{catNo}
+            </if>
+            <if test="registrateDate != null and registrateDate != ''">
+                AND DATE_FORMAT(REGISTRATE_DATE, '%Y-%m-%d %H:%i:%s') = DATE_FORMAT(STR_TO_DATE(#{registrateDate}, '%Y년 %m월 %d일 %H:%i:%s'), '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="modifiedDate != null and modifiedDate != ''">
+                AND DATE_FORMAT(MODIFIED_DATE, '%Y-%m-%d %H:%i:%s') = DATE_FORMAT(STR_TO_DATE(#{modifiedDate}, '%Y년 %m월 %d일 %H:%i:%s'), '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="note != null and note != ''">
+                AND NOTE = #{note}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectObservationLogList" parameterType="org.catty.observationlog.ObservationLog" resultMap="observationLogResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                MEMBER_NO,
+                CAT_NO,
+                DATE_FORMAT(REGISTRATE_DATE, '%Y년 %m월 %d일 %H:%i:%s') AS REGISTRATE_DATE,
+                DATE_FORMAT(MODIFIED_DATE, '%Y년 %m월 %d일 %H:%i:%s') AS MODIFIED_DATE,
+                NOTE
+            FROM observation_log
+            <include refid="whereSql" />
+            ORDER BY REGISTRATE_DATE DESC
+        ) TB
+    </select>
+
+    <select id="selectObservationLog" parameterType="org.catty.observationlog.ObservationLog" resultMap="observationLogResultMap">
+        SELECT
+            NO,
+            MEMBER_NO,
+            CAT_NO,
+            DATE_FORMAT(REGISTRATE_DATE, '%Y년 %m월 %d일 %H:%i:%s') AS REGISTRATE_DATE,
+            DATE_FORMAT(MODIFIED_DATE, '%Y년 %m월 %d일 %H:%i:%s') AS MODIFIED_DATE,
+            NOTE
+        FROM observation_log
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertObservationLog" parameterType="org.catty.observationlog.ObservationLog">
+        INSERT INTO observation_log (
+            NO,
+            MEMBER_NO,
+            CAT_NO,
+            REGISTRATE_DATE,
+            MODIFIED_DATE,
+            NOTE
+        ) VALUES (
+            NO,
+            #{memberNo},
+            #{catNo},
+            DATE_FORMAT(SYSDATE(), '%Y-%m-%d %H:%i:%s'),
+            DATE_FORMAT(SYSDATE(), '%Y-%m-%d %H:%i:%s'),
+            #{note}
+        )
+    </insert>
+
+    <update id="updateObservationLog" parameterType="org.catty.observationlog.ObservationLog">
+        UPDATE observation_log
+        <set>
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="catNo != ''">
+                CAT_NO = #{catNo},
+            </if>
+            <if test="note != ''">
+                NOTE = #{note},
+            </if>
+                MODIFIED_DATE = DATE_FORMAT(SYSDATE(), '%Y-%m-%d %H:%i:%s')
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteObservationLog" parameterType="org.catty.observationlog.ObservationLog">
+        DELETE FROM observation_log
+        <include refid="whereSql" />
+    </delete>
+</mapper>

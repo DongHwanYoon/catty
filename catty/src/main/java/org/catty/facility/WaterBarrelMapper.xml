@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.facility.WaterBarrelMapper">
+    <resultMap id="waterBarrelResultMap" type="org.catty.facility.WaterBarrel">
+        <result column="NO" property="no" />
+        <result column="FACILITY_NO" property="facilityNo" />
+        <result column="SUPPLEMENT_STATUS" property="supplementStatus" />
+        <result column="CRITICAL_VALUE" property="criticalValue" />
+        <result column="CAPACITY" property="capacity" />
+        <result column="STATUS" property="status" />
+        <result column="STANDARD" property="standard" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="facilityNo != null and facilityNo != ''">
+                AND FACILITY_NO = #{facilityNo}
+            </if>
+            <if test="supplementStatus != null and supplementStatus != ''">
+                AND SUPPLEMENT_STATUS = #{supplementStatus}
+            </if>
+            <if test="criticalValue != null and criticalValue != ''">
+                AND CRITICAL_VALUE = #{criticalValue}
+            </if>
+            <if test="capacity != null and capacity != ''">
+                AND CAPACITY = #{capacity}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+            <if test="standard != null and standard != ''">
+                AND STANDARD = #{standard}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.facility.WaterBarrel" resultType="int">
+        SELECT COUNT(*)
+        FROM water_barrel
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectWaterBarrelList" parameterType="org.catty.facility.WaterBarrel" resultMap="waterBarrelResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                FACILITY_NO,
+                SUPPLEMENT_STATUS,
+                CRITICAL_VALUE,
+                CAPACITY,
+                STATUS,
+                STANDARD
+            FROM water_barrel
+            <include refid="whereSql" />
+        ) TB
+<!--         <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where> -->
+    </select>
+
+    <select id="selectWaterBarrel" parameterType="org.catty.facility.WaterBarrel" resultMap="waterBarrelResultMap">
+        SELECT
+            NO,
+            FACILITY_NO,
+            SUPPLEMENT_STATUS,
+            CRITICAL_VALUE,
+            CAPACITY,
+            STATUS,
+            STANDARD
+        FROM water_barrel
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertWaterBarrel" parameterType="org.catty.facility.WaterBarrel">
+        INSERT INTO water_barrel (
+            NO,
+            FACILITY_NO,
+            SUPPLEMENT_STATUS,
+            CRITICAL_VALUE,
+            CAPACITY,
+            STATUS,
+            STANDARD
+        ) VALUES (
+            #{no},
+            #{facilityNo},
+            #{supplementStatus},
+            #{criticalValue},
+            #{capacity},
+            #{status},
+            #{standard}
+        )
+    </insert>
+
+    <update id="updateWaterBarrel" parameterType="org.catty.facility.WaterBarrel">
+        UPDATE water_barrel
+        <set>
+            <if test="facilityNo != ''">
+                FACILITY_NO = #{facilityNo},
+            </if>
+            <if test="supplementStatus != ''">
+                SUPPLEMENT_STATUS = #{supplementStatus},
+            </if>
+            <if test="criticalValue != ''">
+                CRITICAL_VALUE = #{criticalValue},
+            </if>
+            <if test="capacity != ''">
+                CAPACITY = #{capacity},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="standard != ''">
+                STANDARD = #{standard},
+            </if>
+        </set>
+        WHERE NO = #{no}
+        	AND FACILITY_NO = #{facilityNo}
+    </update>
+
+    <delete id="deleteWaterBarrel" parameterType="org.catty.facility.WaterBarrel">
+        DELETE FROM water_barrel
+        <include refid="whereSql" />
+    </delete>
+</mapper>

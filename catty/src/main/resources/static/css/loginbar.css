@@ -1,0 +1,47 @@
+/* --------------------------------------
+   상단 세션 로그인바
+-----------------------------------------*/
+
+header .header-inner .search-toggle {
+	float: right;
+	list-style: none;
+	line-height: 70px;
+	color: #6f7279;
+	font-size: 15px;
+	padding: 0 10px 0 20px;
+	border-left: 1px solid #eeeeee;
+	margin-left: 10px;
+	cursor: pointer;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+header .header-inner .search-toggle:hover {
+	color: #f3a079;
+}
+
+header .header-inner .search-toggle a {
+	color: #f3a079;
+}
+
+header .header-inner .search-toggle>li .dropdown-menu li a:hover
+	{
+	background-color: #f7f5f5;
+	color: #333;
+	padding-left: 20px;
+	border-left: 3px solid #f3a079;
+}
+
+header .header-inner .search-toggle>li>a:hover, header .header-inner .search-toggle>li>a:focus
+	{
+	color: #333;
+	background-color: transparent;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .4s ease-in-out;
+}

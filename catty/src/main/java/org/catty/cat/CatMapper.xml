@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.cat.CatMapper">
+    <resultMap id="catResultMap" type="org.catty.cat.Cat">
+        <result column="NO" property="no" />
+        <result column="NAME" property="name" />
+        <result column="TAG_ID" property="tagId" />
+        <result column="GENDER" property="gender" />
+        <result column="SPICES" property="spices" />
+        <result column="BIRTH_DATE" property="birthDate" />
+        <result column="FEATURE" property="feature" />
+        <result column="TNR_STATUS" property="tnrStatus" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="tagId != null and tagId != ''">
+                AND TAG_ID = #{tagId}
+            </if>
+            <if test="gender != null and gender != ''">
+                AND GENDER = #{gender}
+            </if>
+            <if test="spices != null and spices != ''">
+                AND SPICES = #{spices}
+            </if>
+            <if test="birthDate != null and birthDate != ''">
+                AND DATE_FORMAT(BIRTH_DATE, '%Y-%m-%d %I:%i:%s') = DATE_FORMAT(#{birthDate}, '%Y-%m-%d %I:%i:%s')
+            </if>
+            <if test="feature != null and feature != ''">
+                AND FEATURE = #{feature}
+            </if>
+            <if test="tnrStatus != null and tnrStatus != ''">
+                AND TNR_STATUS = #{tnrStatus}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectCatList" parameterType="hashmap" resultMap="catResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                NAME,
+                TAG_ID,
+                GENDER,
+                SPICES,
+                DATE_FORMAT(BIRTH_DATE, '%Y-%m-%d') AS BIRTH_DATE,
+                FEATURE,
+                TNR_STATUS
+            FROM cat
+            <where>
+            	NO != -1
+				<if test="term != null and term != ''">
+	            	AND NAME LIKE '%${ term }%'
+				</if>           
+            </where>
+        <if test="sort != null and sort != ''">
+        	<choose>
+        		<when test="sort eq 6">
+        			ORDER BY BIRTH_DATE is null, BIRTH_DATE
+        		</when>
+        		<otherwise>
+		          	ORDER BY ${ sort } is null, ${ sort }
+        		</otherwise>
+        	</choose>
+		</if>   
+        ) TB
+        <!--
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+        -->
+    </select>
+
+    <select id="selectCat" parameterType="org.catty.cat.Cat" resultMap="catResultMap">
+        SELECT
+            NO,
+            NAME,
+            TAG_ID,
+            GENDER,
+            SPICES,
+            DATE_FORMAT(BIRTH_DATE, '%Y-%m-%d') AS BIRTH_DATE,
+            FEATURE,
+            TNR_STATUS
+        FROM cat
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertCat" parameterType="org.catty.cat.Cat">
+        INSERT INTO cat (
+            NO,
+            NAME,
+            TAG_ID,
+            GENDER,
+            SPICES,
+            BIRTH_DATE,
+            FEATURE,
+            TNR_STATUS
+        ) VALUES (
+            NO,
+            #{name},
+            #{tagId},
+            #{gender},
+            <choose>
+            	<when test="spices != '' and spices != null">
+               	 	#{spices},
+            	</when>
+            	<otherwise>
+            		DEFAULT,
+            	</otherwise>
+            </choose>
+            DATE_FORMAT(#{birthDate}, '%Y-%m-%d %I:%i:%s'),
+            <choose>
+            	<when test="feature != '' and feature != null">
+               	 	#{feature},
+            	</when>
+            	<otherwise>
+            		DEFAULT,
+            	</otherwise>
+            </choose>
+            #{tnrStatus}
+        )
+    </insert>
+
+    <update id="updateCat" parameterType="org.catty.cat.Cat">
+        UPDATE cat
+        <set>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="tagId != null">
+                TAG_ID = #{tagId},
+            </if>
+            <if test="gender != ''">
+                GENDER = #{gender},
+            </if>
+            <if test="spices != ''">
+                SPICES = #{spices},
+            </if>
+            <if test="birthDate != ''">
+                BIRTH_DATE = DATE_FORMAT(#{birthDate}, '%Y-%m-%d %I:%i:%s'),
+            </if>
+            <if test="feature != ''">
+                FEATURE = #{feature},
+            </if>
+            <if test="tnrStatus != ''">
+                TNR_STATUS = #{tnrStatus},
+            </if>
+        </set>
+        WHERE
+        	NO = #{no}
+    </update>
+
+    <delete id="deleteCat" parameterType="org.catty.cat.Cat">
+        DELETE FROM cat
+        <include refid="whereSql" />
+    </delete>
+</mapper>

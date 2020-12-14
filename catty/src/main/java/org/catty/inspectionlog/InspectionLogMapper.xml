@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.inspectionlog.InspectionLogMapper">
+    <resultMap id="inspectionLogResultMap" type="org.catty.inspectionlog.InspectionLog">
+        <result column="NO" property="no" />
+        <result column="MEMBER_NO" property="memberNo" />
+        <result column="FACILITY_NO" property="facilityNo" />
+        <result column="REGISTRATE_DATE" property="registrateDate" />
+        <result column="MODIFIED_DATE" property="modifiedDate" />
+        <result column="NOTE" property="note" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="memberNo != null and memberNo != ''">
+                AND MEMBER_NO = #{memberNo}
+            </if>
+            <if test="facilityNo != null and facilityNo != ''">
+                AND FACILITY_NO = #{facilityNo}
+            </if>
+            <if test="registrateDate != null and registrateDate != ''">
+                AND DATE_FORMAT(REGISTRATE_DATE, '%Y-%m-%d %H:%i:%s') = DATE_FORMAT(#{registrateDate}, '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="modifiedDate != null and modifiedDate != ''">
+                AND DATE_FORMAT(MODIFIED_DATE, '%Y-%m-%d %H:%i:%s') = DATE_FORMAT(#{modifiedDate}, '%Y-%m-%d %H:%i:%s')
+            </if>
+            <if test="note != null and note != ''">
+                AND NOTE = #{note}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.inspectionlog.InspectionLog" resultType="int">
+        SELECT COUNT(*)
+        FROM inspection_log
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectInspectionLogList" parameterType="string" resultMap="inspectionLogResultMap">
+       		 SELECT 
+				I.NO,
+				I.MEMBER_NO,
+				I.FACILITY_NO,
+				DATE_FORMAT(REGISTRATE_DATE, '%Y-%m-%d %H:%i:%s') AS REGISTRATE_DATE,
+				DATE_FORMAT(MODIFIED_DATE, '%Y-%m-%d %H:%i:%s') AS MODIFIED_DATE,
+				I.NOTE
+			FROM 
+				inspection_log I
+			JOIN 
+				facility F
+			ON 
+				I.FACILITY_NO = F.NO
+			WHERE 
+				F.NAME LIKE '%${term}%'
+<!--         <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where> -->
+    </select>
+
+    <select id="selectInspectionLog" parameterType="org.catty.inspectionlog.InspectionLog" resultMap="inspectionLogResultMap">
+        SELECT
+            NO,
+            MEMBER_NO,
+            FACILITY_NO,
+            DATE_FORMAT(REGISTRATE_DATE, '%Y-%m-%d %H:%i:%s') AS REGISTRATE_DATE,
+            DATE_FORMAT(MODIFIED_DATE, '%Y-%m-%d %H:%i:%s') AS MODIFIED_DATE,
+            NOTE
+        FROM inspection_log
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertInspectionLog" parameterType="org.catty.inspectionlog.InspectionLog">
+        INSERT INTO inspection_log (
+            NO,
+            MEMBER_NO,
+            FACILITY_NO,
+            REGISTRATE_DATE,
+            MODIFIED_DATE,
+            NOTE
+        ) VALUES (
+            #{no},
+            #{memberNo},
+            #{facilityNo},
+            DATE_FORMAT(#{registrateDate}, '%Y-%m-%d %H:%i:%s'),
+            DATE_FORMAT(#{modifiedDate}, '%Y-%m-%d %H:%i:%s'),
+            #{note}
+        )
+    </insert>
+
+    <update id="updateInspectionLog" parameterType="org.catty.inspectionlog.InspectionLog">
+        UPDATE inspection_log
+        <set>
+            <if test="memberNo != ''">
+                MEMBER_NO = #{memberNo},
+            </if>
+            <if test="facilityNo != ''">
+                FACILITY_NO = #{facilityNo},
+            </if>
+            <if test="registrateDate != ''">
+                REGISTRATE_DATE = DATE_FORMAT(#{registrateDate}, '%Y-%m-%d %H:%i:%s'),
+            </if>
+            <if test="modifiedDate != ''">
+                MODIFIED_DATE = DATE_FORMAT(#{modifiedDate}, '%Y-%m-%d %H:%i:%s'),
+            </if>
+            <if test="note != ''">
+                NOTE = #{note},
+            </if>
+        </set>
+    </update>
+
+    <delete id="deleteInspectionLog" parameterType="org.catty.inspectionlog.InspectionLog">
+        DELETE FROM inspection_log
+        <include refid="whereSql" />
+    </delete>
+</mapper>

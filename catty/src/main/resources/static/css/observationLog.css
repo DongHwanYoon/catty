@@ -1,0 +1,223 @@
+  /* --------------------------------------
+    Observation List
+-----------------------------------------*/
+
+.post-single .log-title {
+    font-size: 30px;
+    font-weight: 700;
+    color:#656464;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.post-single .log-title:before {
+	content: '';
+	position: absolute;
+	bottom: 15px;
+	right: -31px;
+	width: 18px;
+	height: 2px;
+	border-radius: 20px;
+	background-color: #f3a079;
+}
+
+.obs-list-form {
+	position: relative;
+   	padding: 20px;
+   	margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+   	box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+}
+
+.obs-list-form .table-form {
+    position: relative;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+    margin-bottom: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.obs-list-form .table-form .table-resource{
+    padding: 15px;
+}
+
+.obs-list-form .table-form .table-resource th, td{
+    font-size: 13px;
+}
+
+.obs-list-form .table-form .table-resource th{
+    font-size: 13px;
+}
+
+.obs-list-form .log-title {
+    font-size: 30px;
+    font-weight: 700;
+    color:#656464;
+    margin-left: 25px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Noto Sans JP', sans-serif;
+    position: relative;
+    display: inline-block;
+}
+
+.obs-list-form .log-title:before {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    right: -31px;
+    width: 18px;
+    height: 2px;
+    border-radius: 20px;
+    background-color: #f3a079;
+}
+
+.obs-list-form .table-form .log-desc {
+    font-size: 20px;
+    font-weight: 700;
+    color:#656464;
+    line-height: 1.2;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.obs-list-form .table-form .btn-container {
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.obs-list-form .table-form .common-btn {
+    width: 100px;
+    margin-right: 5px;
+    background-color: #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.obs-list-form .table-form .common-btn:hover {
+    background-color: #f97785;
+}
+
+.obs-list-form input[type=text] {
+	padding: 8px 8px;
+	width: 300px;
+	border: 1px solid #dedede;
+	color: #292929;
+	line-height: normal;
+	border-radius: 10px;
+	font-size: 13px;
+}
+
+.obs-list-form .search-btn {
+    width: 55px;
+	margin-left: 3px;
+    background-color: #f3a079;
+    border: 1px solid #f3a079;
+    border: none;
+    color: #fff;
+    padding: 8px 8px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.obs-list-form .search-btn:hover {
+    background-color: #f97785;
+}
+
+.obs-detail-form {
+	position: relative;
+   	padding: 20px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+   	box-shadow: rgba(0, 0, 0, .09) 0px 0px 16px 0px;
+   	background: url('../images/pt1.png') center center fixed ;
+}
+
+.obs-detail-form .about-widget {
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.obs-detail-form .about-widget .log-desc {
+    font-size: 15px;
+    font-weight: 700;
+    color:#656464;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.obs-detail-form img {
+   border-radius: 10px;
+   margin: 10px 0px;
+   width: 100%;
+   height: 500px;
+}
+
+.obs-detail-form .note {
+	height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.obs-detail-form .note .desc {
+    font-size: 15px;
+    color:#656464;
+    margin: 10px;
+}
+
+.obs-detail-form .common-btn {
+    background: #f3a079;
+	color: #fff;
+	padding: 10px 30px;
+	border-radius: 5px;
+	font-size: 14px;
+	border: none;
+	margin-bottom: 25px;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.obs-detail-form .common-btn:hover {
+    background-color: #f97785;
+}
+
+.obs-detail-form textarea {
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border: none;
+}

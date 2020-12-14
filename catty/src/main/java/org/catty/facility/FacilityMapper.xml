@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.facility.FacilityMapper">
+    <resultMap id="facilityResultMap" type="org.catty.facility.Facility">
+        <result column="NO" property="no" />
+        <result column="NAME" property="name" />
+        <result column="UID" property="uid" />
+        <result column="LATITUDE" property="latitude" />
+        <result column="LONGITUDE" property="longitude" />
+        <result column="STATUS" property="status" />
+        <result column="TYPE" property="type" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+        	NO != -1
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="uid != null and uid != ''">
+                AND UID = #{uid}
+            </if>
+            <if test="latitude != null and latitude != ''">
+                AND LATITUDE = #{latitude}
+            </if>
+            <if test="longitude != null and longitude != ''">
+                AND LONGITUDE = #{longitude}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+            <if test="type != null and type != ''">
+                AND TYPE = #{type}
+            </if>
+        </where>
+    </sql>
+    
+     <sql id="whereSql_ignoreZero">
+        <where>
+        	<if test="no == -1" >
+        		AND NO = -1
+        	</if>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="uid != null and uid != ''">
+                AND UID = #{uid}
+            </if>
+            <if test="latitude != null and latitude != ''">
+                AND LATITUDE = #{latitude}
+            </if>
+            <if test="longitude != null and longitude != ''">
+                AND LONGITUDE = #{longitude}
+            </if>
+            <if test="status != null and status != ''">
+                AND STATUS = #{status}
+            </if>
+            <if test="type != null and type != ''">
+                AND TYPE = #{type}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.facility.Facility" resultType="int">
+        SELECT COUNT(*)
+        FROM facility
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectFacilityList" parameterType="string" resultMap="facilityResultMap">
+        SELECT *    
+        FROM facility
+        WHERE NAME LIKE '%${term}%'      
+        	AND	NO != -1  
+<!--         <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where> -->
+    </select>
+
+    <select id="selectFacility" parameterType="org.catty.facility.Facility" resultMap="facilityResultMap">
+        SELECT
+            NO,
+            NAME,
+            UID,
+            LATITUDE,
+            LONGITUDE,
+            STATUS,
+            TYPE
+        FROM facility
+        <include refid="whereSql_ignoreZero" />
+    </select>
+
+    <insert id="insertFacility" parameterType="org.catty.facility.Facility">
+        INSERT INTO facility (
+            NO,
+            NAME,
+            UID,
+            LATITUDE,
+            LONGITUDE,
+            STATUS,
+            TYPE
+        ) VALUES (
+            NO,
+            #{name},
+            #{uid},
+            #{latitude},
+            #{longitude},
+            #{status},
+            #{type}
+        )
+    </insert>
+    
+     <insert id="insertTempFacility" parameterType="org.catty.facility.Facility">
+        INSERT INTO facility (
+            NO,
+            NAME,
+            UID,
+            LATITUDE,
+            LONGITUDE,
+            STATUS,
+            TYPE
+        ) VALUES (
+            #{no},
+            #{name},
+            #{uid},
+            #{latitude},
+            #{longitude},
+            #{status},
+            #{type}
+        )
+    </insert>
+
+    <update id="updateFacility" parameterType="org.catty.facility.Facility">
+        UPDATE facility
+        <set>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="uid != ''">
+                UID = #{uid},
+            </if>
+            <if test="latitude != ''">
+                LATITUDE = #{latitude},
+            </if>
+            <if test="longitude != ''">
+                LONGITUDE = #{longitude},
+            </if>
+            <if test="status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="type != ''">
+                TYPE = #{type},
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteFacility" parameterType="org.catty.facility.Facility">
+        DELETE FROM facility
+        <include refid="whereSql_ignoreZero" />
+    </delete>
+</mapper>

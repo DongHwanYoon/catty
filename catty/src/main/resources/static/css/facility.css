@@ -1,0 +1,302 @@
+/* 목록 */
+.post-single .map-title {
+    margin-top: 30px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 20;
+}
+
+.post-single table {
+	font-size: 17px;
+}
+.post-single .facility .button {
+	position: absolute;
+    top: 88%;
+    right: 4%;
+    background: #f3a079;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+}
+
+.post-single .facility .button-search {
+	background: #f3a079;
+	color: #fff;
+	border-radius: 5px;
+	padding: 12px 25px;
+	font-size: 16px;
+	border: none;
+	margin-bottom: 15px;
+	margin-left: 10px;
+}
+
+
+.post-single .facility input[type=button] {
+    min-width: 100px;
+    background: #f3a079;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
+
+.post-single .facility .register .button-renew-uid {
+	min-width: 100px;
+    background: #f3a079;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
+
+
+.post-single .facility input[type=button]:hover {
+	-webkit-transition: all .3s ease-in-out;	/* 서서히 바뀌는거 */
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background: #f97785;
+}
+
+.post-single .facility input[type=button]:focus {
+	outline:none;
+}
+
+.post-single .facility input[type=submit]:hover {
+	-webkit-transition: all .3s ease-in-out;	/* 서서히 바뀌는거 */
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background: #f97785;
+}
+
+.post-single .facility input[type=submit]:focus {
+	outline:none;
+}
+
+.post-single .facility .text-search {
+	padding: 12px 25px;
+	font-size: 16px;
+    margin-bottom: 15px;
+    width: 300px;
+    border: 1px solid #dedede;
+    color: #292929;
+    line-height: normal;
+    border-radius: 5px;
+}
+
+.post-single .facility .title {
+	margin-bottom: 30px;
+	margin-left: 30px;
+	margin-top: 30px;
+	color: #343434;
+	font-size: 26px;
+	font-weight: 700;
+	font-family: 'Noto Sans JP', sans-serif;
+	
+}
+
+.post-single .facility .title:before {
+	content: '';
+	position: absolute;
+	bottom: 15px;
+	height: 2px;
+	right: -31px;
+	width: 18px;
+	border-radius: 20px;
+	background-color: #f3a079;
+}
+ 	
+
+.post-single .facility .register .map {
+	width: 87%;
+	margin: auto;
+	font-size: 16px;
+}
+
+.post-single .facility .table-list {
+	margin-right: 30px;
+}
+
+/* 시설물 등록 */
+.post-single .facility .register .optional select[multiple]{
+    width: 300px;
+    vertical-align: middle;
+    font-size: 120x;
+    margin-left: 80px;
+}
+
+.post-single .facility .register .detail p{
+	line-height: 50px;
+	margin-left: 80px;
+}
+
+.post-single .facility .register .detail input[type=text]{
+	line-height: normal;
+	margin-left: 20px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.post-single .facility .register .detail label{
+	font-size: 16px;
+}
+
+.post-single .facility .register .map {
+	background-color: #f4f4f4;
+}
+
+.post-single .facility .register .button-feedBarrel-add {
+	margin-left: 80px;
+}
+
+.post-single .facility .register .button-feedBarrel-delete {
+	margin-left: 80px;
+}
+
+.post-single .facility .register .button-waterBarrel-add {
+	margin-left: 70px;
+}
+
+.post-single .facility .register .button-waterBarrel-delete {
+	margin-left: 90px;
+}
+
+.post-single .facility input[type=button] {
+   min-width: 100px;
+    background: #f3a079;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+}
+
+.post-single .facility .feedBarrel {
+	float: left;
+	background-color: #f4f4f4;
+	margin-left: 80px;
+	height: 200px;
+	width: 300px;
+	border-radius: 10px;
+}
+
+.post-single .facility .waterBarrel {
+	float: left;
+	background-color: #f4f4f4;
+	margin-left: 80px;
+	margin-right: 80px;
+	height: 200px;
+	width: 300px;
+	border-radius: 10px;
+}
+
+.post-single .facility .register .foodBarrel input[type=button] {
+    background: none;
+    color: black;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-style: oblique;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.post-single .facility .register .foodBarrel input[type=button]:hover {
+    color: #f3a079;
+}
+
+.post-single .facility .feedBarrel select {
+	margin-top: 30px;
+}
+
+.post-single .facility .waterBarrel select {
+	margin-top: 30px;
+}
+
+.post-single .facility .register input[type=radio] {
+	margin-right: 30px;
+}
+
+.post-single .facility .button-waterBarrel-add {
+	margin-top: 30px;
+}
+
+.post-single .facility .button-feedBarrel-add {
+	margin-top: 30px;
+}
+
+.post-single .facility .select-member-desc {
+	margin-top: 30px;
+	margin-left: 80px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.post-single .facility .buttons {
+	margin-top: 60px;
+}
+
+.post-single .facility .register .buttons .button-move-list {
+	margin-left: 80px;
+	float: left;
+}
+
+.post-single .facility .register .buttons .button-submit {
+	margin-right: 80px;
+	float: right;
+}
+
+.post-single .facility .register .optional table {
+	margin: auto;
+	width: 80%;
+}
+.post-single .facility .register .detail-buttons {
+	width: 95%;
+}
+
+.post-single .facility .register .detail-buttons .move-list{
+	float: left;
+	margin-top: 50px;
+	margin-left: 80px;
+}
+
+.post-single .facility .register .detail-buttons .regist-ins-log{
+	float: right;
+	margin-top: 50px;
+	margin-right: 30px;
+}
+
+.post-single .facility .register .detail-buttons input[type=submit]{
+	float: right;
+	min-width: 100px;
+    background: #f3a079;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+	margin-top: 50px;
+	margin-bottom: 25px;
+	margin-left: 10px;
+	margin-right: 40px;
+}
+
+.post-single .facility .register .detail-buttons input[type=submit]:hover{
+	-webkit-transition: all .3s ease-in-out;	/* 서서히 바뀌는거 */
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background: #f97785;
+}
+
+

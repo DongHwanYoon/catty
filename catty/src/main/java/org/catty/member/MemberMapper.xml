@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.member.MemberMapper">
+    <resultMap id="memberResultMap" type="org.catty.member.Member">
+        <result column="NO" property="no" />
+        <result column="ID" property="id" />
+        <result column="PWD" property="pwd" />
+        <result column="NAME" property="name" />
+        <result column="PHONE_NO" property="phoneNo" />
+        <result column="AUTHORITY" property="authority" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="id != null and id != ''">
+                AND ID = #{id}
+            </if>
+            <if test="pwd != null and pwd != ''">
+                AND PWD = #{pwd}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME = #{name}
+            </if>
+            <if test="phoneNo != null and phoneNo != ''">
+                AND PHONE_NO = #{phoneNo}
+            </if>
+            <if test="authority != null and authority != ''">
+                AND AUTHORITY = #{authority}
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="org.catty.member.Member" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        <include refid="whereSql" />
+    </select>
+
+    <select id="selectMemberList" parameterType="org.catty.member.Member" resultMap="memberResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                ID,
+                PWD,
+                NAME,
+                PHONE_NO,
+                AUTHORITY
+            FROM member
+            <where>
+				<if test="term != null and term != ''">
+	            	NAME LIKE '%${ term }%'
+				</if>
+            </where>
+            <!-- 
+            <include refid="whereSql" />
+             -->
+        ) TB
+        <!--
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+     -->
+    </select>
+
+    <select id="selectMember" parameterType="org.catty.member.Member" resultMap="memberResultMap">
+        SELECT
+            NO,
+            ID,
+            PWD,
+            NAME,
+            PHONE_NO,
+            AUTHORITY
+        FROM member
+        <include refid="whereSql" />
+    </select>
+
+    <insert id="insertMember" parameterType="org.catty.member.Member">
+        INSERT INTO member (
+            NO,
+            ID,
+            PWD,
+            NAME,
+            PHONE_NO,
+            AUTHORITY
+        ) VALUES (
+            #{no},
+            #{id},
+            #{pwd},
+            #{name},
+            #{phoneNo},
+            #{authority}
+        )
+    </insert>
+
+    <update id="updateMember" parameterType="org.catty.member.Member">
+        UPDATE member
+        <set>
+            <!--
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+             -->
+            <if test="id != ''">
+                ID = #{id},
+            </if>
+            <if test="pwd != ''">
+                PWD = #{pwd},
+            </if>
+            <if test="name != ''">
+                NAME = #{name},
+            </if>
+            <if test="phoneNo != ''">
+                PHONE_NO = #{phoneNo},
+            </if>
+            <if test="authority != ''">
+                AUTHORITY = #{authority},
+            </if>
+        </set>
+        WHERE NO = #{no}
+    </update>
+
+    <delete id="deleteMember" parameterType="org.catty.member.Member">
+        DELETE FROM member
+        WHERE NO = #{no}
+         <!--
+        <include refid="whereSql" />
+         -->
+    </delete>
+</mapper>

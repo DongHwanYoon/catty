@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Author: dbsehdghks45@naver.com -->
+<mapper namespace="org.catty.cat.AccessRecordMapper">
+    <resultMap id="accessRecordResultMap" type="org.catty.cat.AccessRecord">
+        <result column="NO" property="no" />
+        <result column="ACCESS_TIME" property="accessTime" />
+        <result column="CAT_NO" property="catNo" />
+        <result column="FACILITY_NO" property="facilityNo" />
+    </resultMap>
+
+    <sql id="whereSql">
+        <where>
+            <if test="no != null and no != ''">
+                AND NO = #{no}
+            </if>
+            <if test="accessTime != null and accessTime != ''">
+                AND DATE_FORMAT(ACCESS_TIME, '%Y-%m-%d %I:%i:%s') = DATE_FORMAT(#{accessTime}, '%Y-%m-%d %I:%i:%s')
+            </if>
+            <if test="catNo != null and catNo != ''">
+                AND CAT_NO = #{catNo}
+            </if>
+            <if test="facilityNo != null and facilityNo != ''">
+                AND FACILITY_NO = #{facilityNo}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectAccessRecordList" parameterType="org.catty.cat.AccessRecord" resultMap="accessRecordResultMap">
+        SELECT *
+        FROM (
+            SELECT
+                NO,
+                DATE_FORMAT(ACCESS_TIME, '%Y년 %m월 %d일 %I:%i:%s') AS ACCESS_TIME,
+                CAT_NO,
+                FACILITY_NO
+            FROM access_record
+            <include refid="whereSql" />
+            ORDER BY ACCESS_TIME DESC
+        ) TB
+        <!-- 
+        <where>
+            <if test="itemStart > -1">
+                RN BETWEEN (#{itemStart} + 1)
+                       AND (#{itemStart} + #{itemSizePerPage})
+            </if>
+        </where>
+        -->
+    </select>
+
+    <select id="selectAccessRecord" parameterType="org.catty.cat.AccessRecord" resultMap="accessRecordResultMap">
+        SELECT
+            NO,
+            DATE_FORMAT(ACCESS_TIME, '%Y년 %m월 %d일 %I:%i:%s') AS ACCESS_TIME,
+            CAT_NO,
+            FACILITY_NO
+        FROM access_record
+        WHERE ACCESS_TIME = (
+				SELECT MAX(ACCESS_TIME)
+				FROM access_record
+				WHERE CAT_NO= #{catNo}
+				GROUP BY CAT_NO)
+    </select>
+
+	<select id="selectAccessRecordForTime" parameterType="org.catty.cat.AccessRecord" resultMap="accessRecordResultMap">
+		SELECT 
+			NO, 
+			ACCESS_TIME, 
+			CAT_NO, 
+			FACILITY_NO 
+		FROM ACCESS_RECORD 
+        WHERE ACCESS_TIME IN (
+				SELECT 
+					MAX(ACCESS_TIME) 
+                FROM ACCESS_RECORD 
+                GROUP BY CAT_NO
+		);
+	</select>
+
+    <insert id="insertAccessRecord" parameterType="org.catty.cat.AccessRecord">
+        INSERT INTO access_record (
+            NO,
+            ACCESS_TIME,
+            CAT_NO,
+            FACILITY_NO
+        ) VALUES (
+            #{no},
+            DATE_FORMAT(#{accessTime}, '%Y-%m-%d %I:%i:%s'),
+            #{catNo},
+            #{facilityNo}
+        )
+    </insert>
+
+    <update id="updateAccessRecord" parameterType="org.catty.cat.AccessRecord">
+        UPDATE access_record
+        <set>
+            <if test="no != ''">
+                NO = #{no},
+            </if>
+            <if test="accessTime != ''">
+                ACCESS_TIME = DATE_FORMAT(#{accessTime}, '%Y-%m-%d %I:%i:%s'),
+            </if>
+            <if test="catNo != ''">
+                CAT_NO = #{catNo},
+            </if>
+            <if test="facilityNo != ''">
+                FACILITY_NO = #{facilityNo},
+            </if>
+        </set>
+    </update>
+
+    <delete id="deleteAccessRecord" parameterType="org.catty.cat.AccessRecord">
+        DELETE FROM access_record
+        <include refid="whereSql" />
+    </delete>
+</mapper>
